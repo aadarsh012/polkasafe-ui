@@ -27,6 +27,15 @@ const Apps = () => {
 				return;
 			}
 			else{
+				if(!email){
+					queueNotification({
+						header: 'Error!',
+						message: 'Please enter email.',
+						status: NotificationStatus.ERROR
+					});
+					setLoading(false);
+					return;
+				}
 
 				const addEmailRes = await fetch(`${FIREBASE_FUNCTIONS_URL}/addAppsAlertRecipient`, {
 					body: JSON.stringify({
